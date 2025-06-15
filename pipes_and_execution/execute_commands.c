@@ -9,7 +9,29 @@
 /*   Updated: 2025/06/14 01:58:31 by pviegas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+void	print_command_data_struct(t_command_data *data)
+{
+	int	i;
+	int	j;
 
+	i = 0;
+	while (i < data->num_commands)
+	{
+		printf("Command[%d]: %s\n", i, data->commands[i]);
+		if (data->arguments && data->arguments[i])
+		{
+			j = 0;
+			while (data->arguments[i][j])
+			{
+				printf("  Arg[%d][%d]: %s\n", i, j, data->arguments[i][j]);
+				j++;
+			}
+		}
+		if (data->input_files && data->input_files[i])
+			printf("  Input file[%d]: %s\n", i, data->input_files[i]);
+		i++;
+	}
+}
 #include "../minishell.h"
 
 /// @brief Initializes execution state and allocates PID array for pipeline
